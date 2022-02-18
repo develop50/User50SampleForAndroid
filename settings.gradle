@@ -1,0 +1,3 @@
+rootProject.name = "User50Sample"
+include ':app'
+include ':module_java'
