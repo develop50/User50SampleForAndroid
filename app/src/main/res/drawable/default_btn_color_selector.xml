@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- 색상 selector는 바로 색상값을 입력 할 수 없어 color.xml에 정의 후 사용 해야 함 -->
+    <item android:drawable="@color/default_btn_color_selector_press" android:state_pressed="true"/>
+    <item android:drawable="@color/default_btn_color_selector_disable" android:state_enabled="false"/>
+    <item android:drawable="@color/default_btn_color_selector_normal"/>
+
+</selector>
