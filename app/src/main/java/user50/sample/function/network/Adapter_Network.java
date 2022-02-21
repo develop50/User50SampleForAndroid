@@ -95,13 +95,13 @@ public class Adapter_Network extends BaseAdapter{
 	public View getView(int position, View convertView, ViewGroup parent) {
 
 		if (convertView == null) {
-			convertView = ((Activity) mContext).getLayoutInflater().inflate(R.layout.item_net_parameter, null);
+			convertView = ((Activity) mContext).getLayoutInflater().inflate(R.layout.item_network_parameter, null);
 		}
 
-		TextView tv_key = (TextView)convertView.findViewById(R.id.item_net_parameter_tv_key);
-		TextView tv_value = (TextView)convertView.findViewById(R.id.item_net_parameter_tv_value);
-        Button btn_delete = (Button)convertView.findViewById(R.id.item_net_parameter_btn_delete);
-        Button btn_modify = (Button)convertView.findViewById(R.id.item_net_parameter_btn_modify);
+		TextView tv_key = (TextView)convertView.findViewById(R.id.item_network_parameter_tv_key);
+		TextView tv_value = (TextView)convertView.findViewById(R.id.item_network_parameter_tv_value);
+        Button btn_delete = (Button)convertView.findViewById(R.id.item_network_parameter_btn_delete);
+        Button btn_modify = (Button)convertView.findViewById(R.id.item_network_parameter_btn_modify);
 
         Pair<String, String> parameter = getItem(position);
 
@@ -155,9 +155,9 @@ public class Adapter_Network extends BaseAdapter{
 
                 final Pair<String, String> modifyParameter = (Pair<String, String>) v.getTag();
 
-                View dialogView = ((Activity)mContext).getLayoutInflater().inflate(R.layout.dialog_net_parameter, null);
-                final EditText edit_key = (EditText)dialogView.findViewById(R.id.dialog_net_parameter_edit_key);
-                final EditText edit_value = (EditText)dialogView.findViewById(R.id.dialog_net_parameter_edit_value);
+                View dialogView = ((Activity)mContext).getLayoutInflater().inflate(R.layout.dialog_network_parameter, null);
+                final EditText edit_key = (EditText)dialogView.findViewById(R.id.dialog_network_parameter_edit_key);
+                final EditText edit_value = (EditText)dialogView.findViewById(R.id.dialog_network_parameter_edit_value);
 
                 edit_key.setText(modifyParameter.first);
                 edit_value.setText(modifyParameter.second);

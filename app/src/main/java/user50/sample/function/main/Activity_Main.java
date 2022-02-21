@@ -26,7 +26,6 @@ public class Activity_Main extends Activity implements AdapterView.OnItemClickLi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
 
         initValue();
@@ -97,7 +96,7 @@ public class Activity_Main extends Activity implements AdapterView.OnItemClickLi
 //        mLvItem.put("리스트뷰 샘플", ListView_Sample_Activity.class);
 //        mLvItem.put("TTS 샘플", TTS_Sample_Activity.class);
 //        mLvItem.put("시간 샘플", Time_Sample_Activity.class);
-        mLvItem.put("심플 네트워크 샘플", Activity_Network.class);
+        mLvItem.put("네트워크", Activity_Network.class);
 //        mLvItem.put("apk 설치 유도 샘플", FileProvider_Sample_Activity.class);
 //        mLvItem.put("액티비티 라이프 사이클 따라가는 객체 디자인 패턴", ActivityLifeCycle_Activity.class);
 //        mLvItem.put("ConstraintLayout 샘플", ConstraintLayout_Sample_Activity.class);

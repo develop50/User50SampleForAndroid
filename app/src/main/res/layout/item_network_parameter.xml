@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:descendantFocusability="blocksDescendants"
     android:orientation="vertical">
 
     <LinearLayout
@@ -11,17 +12,17 @@
         android:orientation="horizontal">
 
         <TextView
-            android:layout_width="0dp"
+            android:id="@+id/item_network_parameter_tv_key"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="3"
-            android:gravity="center"
-            android:text="KEY" />
+            android:layout_weight="1"
+            android:gravity="center_vertical" />
 
-        <EditText
-            android:id="@+id/dialog_net_parameter_edit_key"
-            android:layout_width="0dp"
+        <TextView
+            android:id="@+id/item_network_parameter_tv_value"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="7"
+            android:layout_weight="1"
             android:gravity="center_vertical" />
 
     </LinearLayout>
@@ -32,19 +33,19 @@
         android:layout_weight="1"
         android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="0dp"
+        <Button
+            android:id="@+id/item_network_parameter_btn_delete"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="3"
-            android:gravity="center"
-            android:text="VALUE" />
+            android:layout_weight="1"
+            android:text="DELETE" />
 
-        <EditText
-            android:id="@+id/dialog_net_parameter_edit_value"
-            android:layout_width="0dp"
+        <Button
+            android:id="@+id/item_network_parameter_btn_modify"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="7"
-            android:gravity="center_vertical" />
+            android:layout_weight="1"
+            android:text="MODIFY" />
 
     </LinearLayout>
 

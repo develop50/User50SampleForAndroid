@@ -66,7 +66,6 @@ public class AsyncTask_Init extends AsyncTask<Void, Integer, Integer> {
     protected void onPreExecute() {
         super.onPreExecute();
 
-        this.mActivity.setMessage("시스템 초기화");
         this.mActivity.setDetailMessage("시스템 초기화 준비 중");
 
     }
@@ -96,7 +95,7 @@ public class AsyncTask_Init extends AsyncTask<Void, Integer, Integer> {
         switch (initWork){
             case INIT_DEVICE_INFO:
 
-                this.mActivity.setMessage("디바이스 정보 확인");
+                this.mActivity.setDetailMessage("디바이스 정보 확인");
 
                 break;
             case INIT_DEVICE_INFO_CHECK_DEVICE_TYPE:
@@ -129,7 +128,7 @@ public class AsyncTask_Init extends AsyncTask<Void, Integer, Integer> {
 
         if(value == INIT_SUCCESS){
 
-            this.mActivity.setMessage("시스템 초기화 완료");
+            this.mActivity.setDetailMessage("시스템 초기화 완료");
             this.mActivity.setDetailMessage("다음 버튼을 눌러주시기 바랍니다.");
             this.mActivity.setNextViewEnabled();
 

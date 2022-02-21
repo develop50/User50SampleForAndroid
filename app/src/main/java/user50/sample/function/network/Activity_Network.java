@@ -84,7 +84,7 @@ public class Activity_Network extends Activity implements View.OnClickListener, 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_simplenet);
+        setContentView(R.layout.activity_network);
 
         initValue();
         initLayout();
@@ -109,20 +109,20 @@ public class Activity_Network extends Activity implements View.OnClickListener, 
 
     private void initLayout() {
 
-        edit_root_url = (EditText)findViewById(R.id.net_edit_root_url);
-        edit_context_url = (EditText)findViewById(R.id.net_edit_context_url);
+        edit_root_url = (EditText)findViewById(R.id.network_edit_root_url);
+        edit_context_url = (EditText)findViewById(R.id.network_edit_context_url);
 
-        btn_download = (Button)findViewById(R.id.net_btn_download);
-        btn_upload = (Button)findViewById(R.id.net_btn_upload);
+        btn_download = (Button)findViewById(R.id.network_btn_download);
+        btn_upload = (Button)findViewById(R.id.network_btn_upload);
 
-        lv_parameter = (ListView)findViewById(R.id.net_lv_parameter);
-        btn_add = (Button)findViewById(R.id.net_btn_add);
-        btn_clear = (Button)findViewById(R.id.net_btn_clear);
+        lv_parameter = (ListView)findViewById(R.id.network_lv_parameter);
+        btn_add = (Button)findViewById(R.id.network_btn_add);
+        btn_clear = (Button)findViewById(R.id.network_btn_clear);
 
-        rg_method = (RadioGroup) findViewById(R.id.net_rg_method);
-        btn_run = (Button)findViewById(R.id.net_btn_run);
-        sv_result = (ScrollView)findViewById(R.id.net_sv_result);
-        tv_result = (TextView) findViewById(R.id.net_tv_result);
+        rg_method = (RadioGroup) findViewById(R.id.network_rg_method);
+        btn_run = (Button)findViewById(R.id.network_btn_run);
+        sv_result = (ScrollView)findViewById(R.id.network_sv_result);
+        tv_result = (TextView) findViewById(R.id.network_tv_result);
 
         // 초기 값
         edit_root_url.setText(this.mRootUrl);
@@ -145,7 +145,7 @@ public class Activity_Network extends Activity implements View.OnClickListener, 
     public void onClick(View v) {
 
         switch (v.getId()){
-            case R.id.net_btn_download: {
+            case R.id.network_btn_download: {
 
                 String rootUrl = edit_root_url.getText().toString().trim();
                 String contextUrl = edit_context_url.getText().toString().trim();
@@ -159,15 +159,15 @@ public class Activity_Network extends Activity implements View.OnClickListener, 
 
                 Network_AsyncTask async = new Network_AsyncTask(this, Network_AsyncTask.CONNECT_TYPE_DOWNLOAD, this);
                 async.setUrl(realUrl);
-                async.setUsePostMethod(rg_method.getCheckedRadioButtonId() == R.id.net_rb_get ? false : true);
+                async.setUsePostMethod(rg_method.getCheckedRadioButtonId() == R.id.network_rb_get ? false : true);
                 async.setShowProgressDialog(this, "네트워크 통신 중", "네트워크 통신 중 입니다.\n잠시만 기다려 주시기 바랍니다.");
                 async.execute();
 
             }
                 break;
-            case R.id.net_btn_upload: {
+            case R.id.network_btn_upload: {
 
-                rg_method.check(R.id.net_rb_post);
+                rg_method.check(R.id.network_rb_post);
                 String rootUrl = edit_root_url.getText().toString().trim();
                 String contextUrl = edit_context_url.getText().toString().trim();
 
@@ -186,11 +186,11 @@ public class Activity_Network extends Activity implements View.OnClickListener, 
 
             }
                 break;
-            case R.id.net_btn_add:
+            case R.id.network_btn_add:
 
-                View dialogView = getLayoutInflater().inflate(R.layout.dialog_net_parameter, null);
-                final EditText edit_key = (EditText)dialogView.findViewById(R.id.dialog_net_parameter_edit_key);
-                final EditText edit_value = (EditText)dialogView.findViewById(R.id.dialog_net_parameter_edit_value);
+                View dialogView = getLayoutInflater().inflate(R.layout.dialog_network_parameter, null);
+                final EditText edit_key = (EditText)dialogView.findViewById(R.id.dialog_network_parameter_edit_key);
+                final EditText edit_value = (EditText)dialogView.findViewById(R.id.dialog_network_parameter_edit_value);
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setCancelable(false);
@@ -237,12 +237,12 @@ public class Activity_Network extends Activity implements View.OnClickListener, 
                 builder.show();
 
                 break;
-            case R.id.net_btn_clear:
+            case R.id.network_btn_clear:
 
                 mParameterAdapter.clear();
 
                 break;
-            case R.id.net_btn_run:
+            case R.id.network_btn_run:
 
 //                new AsyncTask<Void, Void, Void>(){
 //
@@ -370,7 +370,7 @@ public class Activity_Network extends Activity implements View.OnClickListener, 
                 Network_AsyncTask async = new Network_AsyncTask(this, Network_AsyncTask.CONNECT_TYPE_STANDARD, this);
                 async.setUrl(realUrl);
                 async.setParameter(mParameterAdapter.getItemListToHashMap());
-                async.setUsePostMethod(rg_method.getCheckedRadioButtonId() == R.id.net_rb_get ? false : true);
+                async.setUsePostMethod(rg_method.getCheckedRadioButtonId() == R.id.network_rb_get ? false : true);
                 async.setShowProgressDialog(this, "네트워크 통신 중", "네트워크 통신 중 입니다.\n잠시만 기다려 주시기 바랍니다.");
                 async.execute();
 

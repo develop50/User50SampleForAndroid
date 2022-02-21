@@ -27,8 +27,6 @@ import user50.sample.R;
 
 /**
  * 앱을 실행하기 위한 초기 준비 작업 액티비티.
- * <p>
- * 아오 시발. 네트워크 들어가니 좆같네;
  */
 public class Activity_Init extends Activity implements View.OnClickListener {
 
@@ -43,7 +41,6 @@ public class Activity_Init extends Activity implements View.OnClickListener {
     ////////////
     // Layout //
     ////////////
-    private TextView tv_message;
     private ScrollView sv_detail;
     private TextView tv_detail;
     private Button btn_next;
@@ -78,7 +75,6 @@ public class Activity_Init extends Activity implements View.OnClickListener {
      */
     private void initLayout() {
 
-        tv_message = (TextView) findViewById(R.id.init_tv_message);
         sv_detail = (ScrollView) findViewById(R.id.init_sv_detail);
         tv_detail = (TextView) findViewById(R.id.init_tv_detail);
         btn_next = (Button) findViewById(R.id.init_btn_next);
@@ -155,15 +151,6 @@ public class Activity_Init extends Activity implements View.OnClickListener {
 
         finish();
 
-    }
-
-    /**
-     * 초기화 진행 상황 메시지 설정.
-     *
-     * @param message 진행 상황 메시지
-     */
-    public void setMessage(String message) {
-        tv_message.setText(((message == null) ? "" : message));
     }
 
     /**
