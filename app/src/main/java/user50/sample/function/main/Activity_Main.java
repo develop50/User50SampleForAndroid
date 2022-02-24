@@ -14,6 +14,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import user50.sample.R;
+import user50.sample.function.filemanager.Activity_FileManager;
 import user50.sample.function.network.Activity_Network;
 
 public class Activity_Main extends Activity implements AdapterView.OnItemClickListener{
@@ -102,7 +103,7 @@ public class Activity_Main extends Activity implements AdapterView.OnItemClickLi
 //        mLvItem.put("ConstraintLayout 샘플", ConstraintLayout_Sample_Activity.class);
 //        mLvItem.put("전화 걸기, 끊기 샘플", Telephone_Sample_Activity.class);
 //        mLvItem.put("zip 샘플", Zip_Sample_Activity.class);
-//        mLvItem.put("파일탐색기 샘플", FileExplorer_Sample_Activity.class);
+        mLvItem.put("파일탐색기 샘플", Activity_FileManager.class);
 //        mLvItem.put("디바이스 정보보기 샘플", GetDeviceInfo_Activity.class);
 //        mLvItem.put("다이얼로그 샘플", Dialog_Sample_Activity.class);
 //        mLvItem.put("타이머 샘플", Timer_Sample_Activity.class);

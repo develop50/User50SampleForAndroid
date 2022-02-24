@@ -5,8 +5,10 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
 import android.util.Log;
+import android.webkit.MimeTypeMap;
 
 import androidx.annotation.RequiresPermission;
+import androidx.core.content.FileProvider;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -143,6 +145,33 @@ public class Util_File {
     }
 
     /**
+     * File 객체를 Uri 객체로 변환하여 반환.
+     * @param context 안드로이드 버전 Nougat (API LEVEL 24) 이상인 경우만 사용. {@link Context}
+     * @param fileProviderAuthority 안드로이드 버전 Nougat (API LEVEL 24) 이상인 경우만 사용. 할 AndroidManifest.xml에 정의한 android:authorities명
+     * @param file 변환 할 File 객체
+     * @return null : 안드로이드 버전 Nougat (API LEVEL 24) 이상인 경우 인자 값이 null인 경우, 이하인 경우 File 객체가 null인 경우, Uri 객체 : 정상 반환
+     */
+    public static Uri transFileToUri(Context context, String fileProviderAuthority, File file){
+
+        if(file == null){
+            return null;
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+
+            if (context == null || fileProviderAuthority == null || fileProviderAuthority.length() <= 0) {
+                return null;
+            }
+
+            return FileProvider.getUriForFile(context, fileProviderAuthority, file);
+
+        } else {
+            return Uri.fromFile(file);
+        }
+
+    }
+
+    /**
      * 파일 경로 문자열을 {@link Uri} 문자열로 변환하여 반환.
      * uri가 사용 되어지는데서 반환 값이 정상 작동 되는지 확인 필요.
      *
@@ -195,7 +224,7 @@ public class Util_File {
 
     /**
      * 파일 확장자 반환.
-     * @param file 파일 확장자를 포함한 파일
+     * @param file 파일 확장자를 포함한 파일명
      * @return null : 파일이 null일 경우, 파일 확장자 : 정상 반환
      */
     public static String getFileExtension(String file) {
@@ -205,6 +234,21 @@ public class Util_File {
         }
 
         return file.substring(file.lastIndexOf(".") + 1);
+
+    }
+
+    /**
+     * 파일 확장자 반환.
+     * @param file 파일 확장자를 포함한 파일
+     * @return null : 파일이 null일 경우, 파일 확장자 : 정상 반환
+     */
+    public static String getFileExtension(File file) {
+
+        if(file == null){
+            return null;
+        }
+
+        return getFileExtension(file.getName());
 
     }
 
@@ -220,6 +264,24 @@ public class Util_File {
         }
 
         String fileName = file.substring(0, file.lastIndexOf("."));
+
+        return fileName.substring(fileName.lastIndexOf("/") + 1);
+
+    }
+
+    /**
+     * 파일 확장자를 제외한 파일명 반환.
+     * @param file 파일 확장자를 포함한 파일
+     * @return null : 파일이 null일 경우, 파일명 : 정상 반환
+     */
+    public static String getFileName(File file) {
+
+        if(file == null){
+            return null;
+        }
+
+        String fileName = file.getName();
+        fileName = fileName.substring(0, fileName.lastIndexOf("."));
 
         return fileName.substring(fileName.lastIndexOf("/") + 1);
 
@@ -850,6 +912,22 @@ public class Util_File {
         }
 
         return result.toString();
+
+    }
+
+    /**
+     * 파일 확장자에 따른 MIME 타입 반환.
+     * @param fileExtension '.' 이 없는 파일 확장자
+     * @return null : 매칭되는 MIME 타입이 없는 경우, MIME 타입 : 매칭되는 MIME 타입
+     */
+    public static String getMimeTypeFromFileExtension(String fileExtension){
+
+        String noDotFileExtension = fileExtension;
+        if(fileExtension.indexOf(".") != -1){
+            noDotFileExtension = fileExtension.trim().substring(0, 1);
+        }
+
+        return MimeTypeMap.getSingleton().getMimeTypeFromExtension(noDotFileExtension);
 
     }
 

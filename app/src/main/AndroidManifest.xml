@@ -40,6 +40,18 @@
         <activity android:name=".function.init.Activity_Init" />
         <activity android:name=".function.main.Activity_Main" />
         <activity android:name=".function.network.Activity_Network" />
+        <activity android:name=".function.filemanager.Activity_FileManager" />
+
+        <!-- Activity_FileManager(파일 탐색기)에서 사용 하는 provider -->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths"/>
+        </provider>
 
     </application>
 
