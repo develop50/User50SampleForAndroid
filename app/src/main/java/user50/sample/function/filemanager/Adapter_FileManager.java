@@ -11,9 +11,12 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Environment;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Display;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.webkit.MimeTypeMap;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
@@ -583,7 +586,7 @@ public class Adapter_FileManager extends BaseAdapter {
     //////////////////////
     // Protected Method //
     //////////////////////
-    protected void showCustomViewOneButtonDialog(Context context, String title, View view,  String btnMsg, DialogInterface.OnClickListener btnListener){
+    protected AlertDialog showCustomViewOneButtonDialog(Context context, String title, View view,  String btnMsg, DialogInterface.OnClickListener btnListener){
 
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setCancelable(false);
@@ -591,11 +594,11 @@ public class Adapter_FileManager extends BaseAdapter {
         builder.setView(view);
         builder.setPositiveButton(btnMsg, btnListener);
         builder.create();
-        builder.show();
+        return builder.show();
 
     }
 
-    protected void showCustomViewTwoButtonDialog(Context context, String title, View view,  String btnMsg, DialogInterface.OnClickListener btnListener, String btnMsg2, DialogInterface.OnClickListener btnListener2){
+    protected AlertDialog showCustomViewTwoButtonDialog(Context context, String title, View view,  String btnMsg, DialogInterface.OnClickListener btnListener, String btnMsg2, DialogInterface.OnClickListener btnListener2){
 
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setCancelable(false);
@@ -604,7 +607,25 @@ public class Adapter_FileManager extends BaseAdapter {
         builder.setPositiveButton(btnMsg, btnListener);
         builder.setNegativeButton(btnMsg2, btnListener2);
         builder.create();
-        builder.show();
+        return builder.show();
+
+    }
+
+    /**
+     * 디바이스 가로, 세로 해상도 크기 반환.
+     * @param context Context
+     * @return int[0] : 가로 픽셀 수
+     *         int[1] : 세로 픽셀 수
+     */
+    protected int[] getDeviceResolutionSize(Context context){
+
+        WindowManager window_manager = (WindowManager)context.getSystemService(Context.WINDOW_SERVICE);
+
+        Display dis = window_manager.getDefaultDisplay();
+        DisplayMetrics metrics = new DisplayMetrics();
+        dis.getMetrics(metrics);
+
+        return new int[]{metrics.widthPixels, metrics.heightPixels};
 
     }
 

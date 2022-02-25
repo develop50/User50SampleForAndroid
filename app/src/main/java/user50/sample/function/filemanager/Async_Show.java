@@ -1,6 +1,7 @@
 package user50.sample.function.filemanager;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
@@ -9,6 +10,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -29,6 +31,7 @@ public class Async_Show extends AsyncTask<Void, Void, Object> {
     //////////////
     // Constant //
     //////////////
+    private static final String LOG_TAG = Async_Show.class.getSimpleName();
     /**
      * 문자열 보여주기 형식.
      */
@@ -139,7 +142,11 @@ public class Async_Show extends AsyncTask<Void, Void, Object> {
                 break;
             case SHOW_VIEW_TYPE_IMAGE:
 
-                result = BitmapFactory.decodeFile(this.mShowFile.getPath());
+                final BitmapFactory.Options options = new BitmapFactory.Options();
+                options.inJustDecodeBounds = true;
+                BitmapFactory.decodeFile(this.mShowFile.getPath(), options);
+
+                result = new int[]{options.outWidth, options.outHeight};
 
                 break;
             case SHOW_VIEW_TYPE_HWP:
@@ -238,7 +245,35 @@ public class Async_Show extends AsyncTask<Void, Void, Object> {
 
                 ImageView iv = (ImageView) v.findViewById(R.id.dialog_filemanager_show_iv_image);
                 iv.setVisibility(View.VISIBLE);
-                iv.setImageBitmap((Bitmap) aObject);
+
+                // 이미지 최적 크기 설정
+                int[] imageSize = (int[])aObject;
+                final int height = imageSize[1];
+                final int width = imageSize[0];
+                int inSampleSize = 1;
+
+                int[] deviceSize = this.mAdapterFileManager.getDeviceResolutionSize(this.mContext);
+                int[] resizeImageSize = {(int)(deviceSize[0] / 10 * 8), (int)(deviceSize[1] / 10 * 8.5)};
+
+                if (height > resizeImageSize[0] || width > resizeImageSize[1]) {
+
+                    final int halfHeight = height / 2;
+                    final int halfWidth = width / 2;
+
+                    // Calculate the largest inSampleSize value that is a power of 2 and keeps both
+                    // height and width larger than the requested height and width.
+                    while ((halfHeight / inSampleSize) >= resizeImageSize[1]
+                            && (halfWidth / inSampleSize) >= resizeImageSize[0]) {
+                        inSampleSize *= 2;
+                    }
+
+                }
+
+                BitmapFactory.Options options = new BitmapFactory.Options();
+                options.inSampleSize = inSampleSize;
+                options.inJustDecodeBounds = false;
+
+                iv.setImageBitmap(BitmapFactory.decodeFile(this.mShowFile.getPath(), options));
 
                 this.mAdapterFileManager.showCustomViewOneButtonDialog(mContext, this.mShowFile.getName() + " 파일 보기", v, "닫기", new DialogInterface.OnClickListener() {
 

@@ -329,9 +329,9 @@ public class Util {
 			case Build.VERSION_CODES.S: // 12.0
 					version_name = "SNOW CONE";
 				break;
-			case Build.VERSION_CODES.S_V2: // 12L
-					version_name = "SNOW CONE_V2";
-				break;
+//			case Build.VERSION_CODES.S_V2: // 12L
+//					version_name = "SNOW CONE_V2";
+//				break;
 		}
 
 		return version_name;
