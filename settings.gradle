@@ -1,4 +1,3 @@
 rootProject.name = "User50Sample"
 include ':app'
 include ':module_java'
-include ':module_kotlin'

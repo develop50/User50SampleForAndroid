@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <Spinner
+        android:id="@+id/randompick_spi_pick_type"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.8" />
+
+    <TextView
+        android:id="@+id/randompick_tv_pick_list"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.8"
+        android:hint="샘플1, 샘플2, 샘플3, ...(항목은 ','로 구분)" />
+
+    <Button
+        android:id="@+id/randompick_btn_pick"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.8"
+        android:text="뽑기" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#5d5d5d"/>
+    
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="추가 옵션" />
+    
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#5d5d5d"/>
+    
+    <LinearLayout
+        android:id="@+id/randompick_linear_pick_option"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="6.6"
+        android:orientation="vertical">
+        
+    </LinearLayout>
+
+</LinearLayout>

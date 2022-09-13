@@ -41,6 +41,7 @@
         <activity android:name=".function.main.Activity_Main" />
         <activity android:name=".function.network.Activity_Network" />
         <activity android:name=".function.filemanager.Activity_FileManager" />
+        <activity android:name=".function.randompick.Activity_RandomPick" />
 
         <!-- Activity_FileManager(파일 탐색기)에서 사용 하는 provider -->
         <provider

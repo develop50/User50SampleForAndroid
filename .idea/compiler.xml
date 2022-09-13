@@ -3,7 +3,6 @@
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel target="1.7">
       <module name="User50Sample.app" target="11" />
-      <module name="User50Sample.module_kotlin" target="11" />
     </bytecodeTargetLevel>
   </component>
 </project>
